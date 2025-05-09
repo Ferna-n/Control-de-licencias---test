@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Licencias</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Licencias Médicas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Número de Licencia</th>
+                    <th>RUT del Paciente</th>
+                    <th>Nombre del Paciente</th>
+                    <th>Diagnóstico</th>
+                    <th>Fecha de Emisión</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Médico Tratante</th>
+                    <th>Institución Emisora</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se mostrarán las licencias desde la base de datos -->
+            </tbody>
+        </table>
+        <a href="/dashboard">Volver al Panel de Control</a>
+    </div>
+    <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+
+    th, td {
+        padding: 0.8rem;
+        text-align: left;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    </style>
+</body>
+</html>

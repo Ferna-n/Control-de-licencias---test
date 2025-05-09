@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
+    <title>Panel de Control</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido al Panel de Control</h1>
+    </header>
+    <div class="container">
+        <h1>Panel de Control</h1>
+        <p>Bienvenido al sistema de gestión de licencias médicas. Selecciona una opción:</p>
+        <div class="dashboard-grid">
+            <a href="/view-licenses" class="dashboard-card">
+                <h2>Ver Licencias</h2>
+                <p>Consulta todas las licencias registradas.</p>
+            </a>
+            <a href="/add-license" class="dashboard-card">
+                <h2>Agregar Licencia</h2>
+                <p>Registra una nueva licencia médica.</p>
+            </a>
+            <a href="/edit-license" class="dashboard-card">
+                <h2>Editar Licencias</h2>
+                <p>Modifica la información de las licencias existentes.</p>
+            </a>
+            <a href="/delete-license" class="dashboard-card">
+                <h2>Eliminar Licencias</h2>
+                <p>Elimina licencias que ya no sean necesarias.</p>
+            </a>
+        </div>
+    </div>
+    <style>
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .dashboard-card {
+        background: #4CAF50;
+        color: white;
+        text-decoration: none;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .dashboard-card:hover {
+        transform: scale(1.05);
+        background-color: #388E3C;
+    }
+
+    .dashboard-card h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .dashboard-card p {
+        margin: 0.5rem 0 0;
+        font-size: 1rem;
+    }
+    </style>
+    <footer>
+        <p>&copy; 2025 Sistema de Gestión de Licencias</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registrarse</h1>
+        <form action="/register" method="POST" novalidate>
+            <input type="text" id="username" name="username" placeholder="Nombre de usuario" value="{{ request.form.get('username', '') }}" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" value="{{ request.form.get('password', '') }}" required>
+            <div>
+                <input type="checkbox" id="admin_checkbox" onclick="toggleAdminField()">
+                <label for="admin_checkbox">Registrar como administrador</label>
+            </div>
+            <div id="admin_field" style="display: none;">
+                <input type="password" id="role_key" name="role_key" placeholder="Clave de rol (solo para administradores)">
+            </div>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            <button type="submit">Registrarse</button>
+        </form>
+        <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión aquí</a>.</p>
+    </div>
+    <script>
+    function toggleAdminField() {
+        const adminField = document.getElementById('admin_field');
+        adminField.style.display = adminField.style.display === 'none' ? 'block' : 'none';
+    }
+    </script>
+</body>
+</html>

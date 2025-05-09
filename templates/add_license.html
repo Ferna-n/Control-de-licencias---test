@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Licencia</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Agregar Nueva Licencia Médica</h1>
+        <form action="/add-license" method="POST">
+            <input type="text" name="numero_licencia" placeholder="Número de Licencia" required>
+            <input type="text" name="rut_paciente" placeholder="RUT del Paciente" required>
+            <input type="text" name="nombre_paciente" placeholder="Nombre del Paciente" required>
+            <textarea name="diagnostico" placeholder="Diagnóstico" required></textarea>
+            <input type="date" name="fecha_emision" placeholder="Fecha de Emisión" required>
+            <input type="date" name="fecha_inicio_reposo" placeholder="Fecha de Inicio de Reposo" required>
+            <input type="date" name="fecha_fin_reposo" placeholder="Fecha de Fin de Reposo" required>
+            <input type="text" name="medico_tratante" placeholder="Médico Tratante" required>
+            <input type="text" name="institucion_emisora" placeholder="Institución Emisora" required>
+            <select name="estado" required>
+                <option value="">Selecciona el Estado</option>
+                <option value="Activa">Activa</option>
+                <option value="Inactiva">Inactiva</option>
+            </select>
+            <button type="submit">Guardar Licencia</button>
+        </form>
+        <a href="/dashboard">Volver al Panel de Control</a>
+    </div>
+    <style>
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    input, textarea, select {
+        padding: 0.8rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 0.8rem;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #388E3C;
+    }
+    </style>
+</body>
+</html>
