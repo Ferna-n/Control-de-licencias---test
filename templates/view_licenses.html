@@ -22,15 +22,48 @@
                     <th>Médico Tratante</th>
                     <th>Institución Emisora</th>
                     <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Aquí se mostrarán las licencias desde la base de datos -->
+                {% for licencia in licencias %}
+                <tr>
+                    <td>{{ licencia.numero_licencia }}</td>
+                    <td>{{ licencia.rut_paciente }}</td>
+                    <td>{{ licencia.nombre_paciente }}</td>
+                    <td>{{ licencia.diagnostico }}</td>
+                    <td>{{ licencia.fecha_emision }}</td>
+                    <td>{{ licencia.fecha_inicio_reposo }}</td>
+                    <td>{{ licencia.fecha_fin_reposo }}</td>
+                    <td>{{ licencia.medico_tratante }}</td>
+                    <td>{{ licencia.institucion_emisora }}</td>
+                    <td>{{ licencia.estado }}</td>
+                    <td>
+                        <a href="/edit-license/{{ licencia.id }}" class="action-button edit">Editar</a>
+                        <a href="/delete-license/{{ licencia.id }}" class="action-button delete">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
         <a href="/dashboard">Volver al Panel de Control</a>
     </div>
     <style>
+    .container {
+        max-width: 90%;
+        margin: 2rem auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #4CAF50;
+        margin-bottom: 1.5rem;
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;
@@ -49,6 +82,31 @@
     th {
         background-color: #4CAF50;
         color: white;
+    }
+
+    .action-button {
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 0.9rem;
+        margin-right: 1rem;
+    }
+
+    .action-button.edit {
+        background-color: #4CAF50;
+    }
+
+    .action-button.edit:hover {
+        background-color: #388E3C;
+    }
+
+    .action-button.delete {
+        background-color: #f44336;
+    }
+
+    .action-button.delete:hover {
+        background-color: #d32f2f;
     }
     </style>
 </body>

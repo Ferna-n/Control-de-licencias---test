@@ -124,13 +124,48 @@ def add_license():
 
     return render_template('add_license.html')
 
-@app.route('/edit-license')
-def edit_license():
-    return render_template('edit_license.html')
+@app.route('/edit-license/<int:license_id>', methods=['GET', 'POST'])
+def edit_license(license_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
 
-@app.route('/delete-license')
-def delete_license():
-    return render_template('delete_license.html')
+    if request.method == 'POST':
+        numero_licencia = request.form['numero_licencia']
+        rut_paciente = request.form['rut_paciente']
+        nombre_paciente = request.form['nombre_paciente']
+        diagnostico = request.form['diagnostico']
+        fecha_emision = request.form['fecha_emision']
+        fecha_inicio_reposo = request.form['fecha_inicio_reposo']
+        fecha_fin_reposo = request.form['fecha_fin_reposo']
+        medico_tratante = request.form['medico_tratante']
+        institucion_emisora = request.form['institucion_emisora']
+        estado = request.form['estado']
+
+        cursor.execute("""
+            UPDATE licencias_medicas
+            SET numero_licencia = %s, rut_paciente = %s, nombre_paciente = %s, diagnostico = %s,
+                fecha_emision = %s, fecha_inicio_reposo = %s, fecha_fin_reposo = %s,
+                medico_tratante = %s, institucion_emisora = %s, estado = %s
+            WHERE id = %s
+        """, (numero_licencia, rut_paciente, nombre_paciente, diagnostico, fecha_emision,
+              fecha_inicio_reposo, fecha_fin_reposo, medico_tratante, institucion_emisora, estado, license_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('view_licenses'))
+
+    cursor.execute("SELECT * FROM licencias_medicas WHERE id = %s", (license_id,))
+    licencia = cursor.fetchone()
+    conn.close()
+    return render_template('edit_license.html', licencia=licencia)
+
+@app.route('/delete-license/<int:license_id>', methods=['POST'])
+def delete_license(license_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM licencias_medicas WHERE id = %s", (license_id,))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('view_licenses'))
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
